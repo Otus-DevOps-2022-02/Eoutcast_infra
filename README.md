@@ -1,14 +1,18 @@
 # Eoutcast_infra
 Eoutcast Infra repository
+
 Задание к лекции №5.
+
 Знакомство с облачной инфраструктурой и облачными сервисами
 
 Задание №1
+
 Подключение в одну строку
 ssh -i ~/.ssh/appuser -J appuser@51.250.9.23 appuser@10.128.0.31
 Получаем возможность доступа к другим серверам в локальной сети организации, которые расположены за NAT, для этого нужно применить флаг -J в командной строке.
 
 Задание №2
+
 Подключение с использованием алиаса
 ssh someinternalhost
 
@@ -26,7 +30,7 @@ host someinternalhost
     User appuser
     ProxyJump bastion
 
-Задание №3.
+#Задание №3.
 Доступ к админке Pritunl: https://51.250.67.207.sslip.io/ - используется сертификат Let's Encrypt.
 Administrator password:
   username: "pritunl"
@@ -35,7 +39,7 @@ Administrator password:
 bastion_IP = 51.250.67.207
 someinternalhost_IP = 10.128.0.31
 
-Домашнее задание №4.
+#Домашнее задание №4.
 Деплой тестового приложения
 
 testapp_IP = 51.250.66.31
@@ -50,3 +54,19 @@ yc compute instance create \
 --network-interface subnet-name=default-ru-central1-a,nat-ip-version=ipv4 \
 --metadata serial-port-enable=1 \
 --metadata-from-file user-data=metadata.yaml
+
+ 
+
+#Домашнее задание №5.
+
+Сборка образов VM при помощи Packer
+
+- Создан сервисный аккаунт и установлен Packer
+
+- Создан конфигурационный файл ubuntu16.json и файл. 
+
+- Собран образ reddit-base на основе этих данных.
+
+- Создана ВМ на базе образа reddit-base
+
+- После запуска ВМ приложение будет доступно по http://51.250.78.92:9292/
